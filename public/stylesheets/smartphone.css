@@ -1,0 +1,18 @@
+@charset "utf-8";
+#d2{
+	flex: 1 6 85%;
+	order: 2;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-flow: row;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	height: 100%;
+}
+li a{
+	display: inline;
+}
+span{
+	display: none;
+}

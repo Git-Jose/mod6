@@ -1,8 +1,109 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@charset "utf-8";
+@font-face {
+	font-family: "Fira Mono";
+	src: url("/FiraMono-Regular.otf") format("opentype");
 }
-
-a {
-  color: #00B7FF;
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body, html{
+	font-family: 'Fira Mono', 'Droid Sans', 'Helvetica', Arial, sans-serif;
+	background-color: #000000;
+	width: 100%;
+	height: 100%;
+	color: white;
+}
+#page-wrap{
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-flow: column;
+	-webkit-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+	height: 100%;
+}
+#d2{
+	flex: 1 6 85%;
+	order: 2;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-flow: row;
+	-webkit-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+	height: 100%;
+}
+header{
+	flex: 1 6 10%;
+	order: 1;
+	background-color: white;
+	color: black;
+}
+nav{
+	flex: 1 6 10%;
+	order: 1;
+	background-color: whitesmoke;
+}
+nav a{
+	border-left: 0.1em solid wheat;
+	margin-right: 0.3em;
+	color: Black;
+}
+nav a:hover{
+	border-bottom: 0.1em solid black;
+	border-left: 0.1em solid black;
+	background-color: wheat;
+}
+.entrada{
+	text-align: center;
+	border-radius: 30px;
+	box-shadow: 0px 0px 5px 5px #808080;
+	-moz-box-shadow: 0px 0px 5px 5px #808080;
+	-webkit-box-shadow: 0px 0px 5px 5px #808080;
+}
+section{
+	flex: 1 6 90%;
+	order: 2;
+	padding: 0.5em;
+	height: 100%;
+	text-align: center;
+}
+footer{
+	flex: 1 6 5%;
+	order: 3;
+	display: inline;
+	color: goldenrod;
+	clear: both;
+}
+a{
+	display: block;
+	text-decoration: none;
+	padding: 6px;
+/*	float: left;*/
+}
+footer a, .volver{
+	color: goldenrod;
+	width: 90%;
+	text-align: center;
+	margin-left: 5%;
+}
+footer:hover{
+	background-color: whitesmoke;
+}
+h1, h2{
+	text-align: center;
+	margin-top: 0.5em;
+}
+ul{
+	list-style-type: none;
+	padding: 0.5em 5% 0.5em 5%;
+}
+li{
+	display: inline;
+}
+a:hover{
+	background-color: whitesmoke;
+	color: #000000;
+	border-color: wheat;
 }
