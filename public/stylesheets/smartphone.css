@@ -13,6 +13,17 @@
 li a{
 	display: inline;
 }
+footer a{
+	display: block;
+}
 span{
 	display: none;
+}
+img{
+	width: 20%;
+	height: 100%;
+	float: left;
+}
+.creditos{
+	text-align: left;
 }
