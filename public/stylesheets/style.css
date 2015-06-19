@@ -91,6 +91,15 @@ footer a, .volver{
 	margin-left: 5%;
 	display: inline;
 }
+.tabla{
+	width: 90%;
+	text-align: center;
+	margin-left: 5%;
+	/*display: inline;*/
+}
+.tabla a{
+	color: goldenrod;
+}
 footer:hover{
 	background-color: whitesmoke;
 }
