@@ -1,7 +1,15 @@
 <table class="tabla">
+<caption>Lista de preguntas</caption>
 <% var i; for (i = 0; i < quizes.length; i++){%>
 <tr>
 <td> <a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %> </a> </td>
 </tr>
 <% } %>
 </table>
+<form action="/quizes" method="get">
+	<fieldset>
+	<legend>Buscador</legend>
+		<input class="entrada" type="text" name="search" placeholder="Buscador.">
+		<input type="submit" value="Buscar">
+	</fieldset>
+</form>

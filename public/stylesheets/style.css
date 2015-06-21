@@ -95,7 +95,13 @@ footer a, .volver{
 	width: 90%;
 	text-align: center;
 	margin-left: 5%;
-	/*display: inline;*/
+}
+fieldset{
+	width: 40%;
+	margin-left: 30%;
+}
+legend{
+	color: cornsilk;
 }
 .tabla a{
 	color: goldenrod;
@@ -119,12 +125,7 @@ a:hover{
 	color: #000000;
 	border-color: wheat;
 }
-/*img{
-	width: 10%;
-	height: 50%;
-	float: left;
-	margin-right: 1em;
-}*/
+
 .creditos{
 	color: gold;
 }
