@@ -20,23 +20,27 @@ exports.load = function(req, res, next, quizId) {
 //Get /quizes
 exports.index = function(req, res, next) {
 	if (req.query.search) {
-	
-	var buscar = (req.query.search).replace(/ /g,'%');
-	models.Quiz.findAll({where:["pregunta like ?",'%' + buscar + '%'], order: 'pregunta ASC'}).then(function(quizes) {
-		res.render('quizes/index', {
-			quizes: quizes
+
+		var buscar = (req.query.search).replace(/ /g, '%');
+		models.Quiz.findAll({
+			where: ["pregunta like ?", '%' + buscar + '%'],
+			order: 'pregunta ASC'
+		}).then(function(quizes) {
+			res.render('quizes/index', {
+				quizes: quizes
+			});
+		}).catch(function(error) {
+			next(error);
 		});
-	}).catch(function(error) {
-		next(error);
-	});} else {
-			models.Quiz.findAll().then(function(quizes) {
-		res.render('quizes/index', {
-			quizes: quizes
+	} else {
+		models.Quiz.findAll().then(function(quizes) {
+			res.render('quizes/index', {
+				quizes: quizes
+			});
+		}).catch(function(error) {
+			next(error);
 		});
-	}).catch(function(error) {
-		next(error);
-	});
-	}	
+	}
 };
 
 
@@ -57,4 +61,26 @@ exports.answer = function(req, res) {
 		quiz: req.quiz,
 		respuesta: resultado
 	});
+};
+
+//Get /quizes/new
+exports.new = function(req, res) {
+	var quiz = models.Quiz.build({ //Crea objeto quiz no persistente con build(..)
+		pregunta: "Pregunta",
+		respuesta: "Respuesta"
+	});
+	res.render('quizes/new', {
+		quiz: quiz
+	});
+};
+
+//POST /quizes/create
+exports.create = function(req, res) {
+	var quiz = models.Quiz.build(req.body.quiz);
+	//Guarda en la BD los campos pregunta y respuesta de quiz
+	quiz.save({
+			fields: ["pregunta", "respuesta"]
+		}).then(function() {
+			res.redirect('/quizes');
+		}) //Redirección HTTP (URL relativo) lista de preguntas
 };
