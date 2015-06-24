@@ -6,7 +6,8 @@ var quizController = require('../controllers/quiz_controller');
 /* GET home page. */
 router.get('/', function(req, res) {
 	res.render('index', {
-		title: 'Quiz'
+		title: 'Quiz',
+		errors: []
 	});
 });
 
@@ -23,7 +24,7 @@ router.post('/quizes/create', quizController.create);
 //router.get('/quizes/question', quizController.question);
 //router.get('/quizes/answer', quizController.answer);
 router.get('/autor', function(req, res, next) {
-	res.render('autor');
+	res.render('autor', {errors: []});
 });
 
 module.exports = router;
