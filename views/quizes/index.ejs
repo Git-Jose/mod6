@@ -1,15 +1,24 @@
-<table class="tabla">
+<table class="tabla" border="1">
 <caption>Lista de preguntas</caption>
+
+<tr>
+<th>Pregunta</th>
+<th>Temática</th>
+<th colspan="2" >Editar/Borrar</th>
+
+</tr>
+
 <% var i; for (i = 0; i < quizes.length; i++){%>
 <tr>
-<td> <a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %> </a> </td>
-<td> <a href="quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a></td>
-<td>
-<form action="quizes/<%= quizes[i].id %>?_method=delete" method="post">
-	<button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
-	borrar
-	</button>
-</form>
+<td> <a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %>  </a>  </td>
+<td> <%= quizes[i].tema %> </td>
+<td> <a href="quizes/<%= quizes[i].id %>/edit"> <button>Editar</button> </a> </td>
+<td> 
+	<form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+		<button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
+		Borrar
+		</button>
+	</form>
 </td>
 </tr>
 <% } %>
@@ -19,6 +28,7 @@
 	<fieldset>
 	<legend>Buscador</legend>
 		<input class="entrada" type="text" name="search" placeholder="Buscador.">
-		<input type="submit" value="Buscar">
+		<input class="boton" type="submit" value="Buscar">
 	</fieldset>
 </form>
+

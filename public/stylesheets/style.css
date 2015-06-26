@@ -100,14 +100,18 @@ fieldset{
 	width: 40%;
 	margin-left: 30%;
 }
+.boton:hover, button:hover{
+	color: goldenrod;
+	cursor: pointer;
+}
 legend{
 	color: cornsilk;
 }
 .tabla a{
 	color: goldenrod;
 }
-footer:hover{
-	background-color: whitesmoke;
+footer a:hover{
+	color: white;
 }
 h1, h2{
 	text-align: center;
@@ -120,12 +124,26 @@ ul{
 li{
 	display: inline;
 }
-a:hover{
-	background-color: whitesmoke;
-	color: #000000;
+section a:hover{
+	/*background-color: whitesmoke;*/
+	color: #ffffff;
 	border-color: wheat;
+}
+
+select{
+	margin-top: 1em;
+}
+.elec{
+	display: inline;
 }
 
 .creditos{
 	color: gold;
+}
+caption{
+	font-size: x-large;
+	font-weight: bold;
+}
+.error{
+	color: #ff4e00;
 }

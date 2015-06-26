@@ -66,20 +66,22 @@ exports.answer = function(req, res) {
 		errors: []
 	});
 };
-
 //Get /quizes/new
 exports.new = function(req, res) {
-	var quiz = models.Quiz.build({ //Crea objeto quiz no persistente con build(..)
-		pregunta: "Pregunta",
-		respuesta: "Respuesta"
-	});
+	var quiz = models.Quiz.build( //*******build crea objeto quiz no persistente
+		{
+			pregunta: "Pregunta",
+			respuesta: "Respuesta",
+			tema: "Otro"
+		}
+	);
 	res.render('quizes/new', {
 		quiz: quiz,
 		errors: []
 	});
 };
 
-//POST /quizes/create
+//Post /quizes/create
 exports.create = function(req, res) {
 	var quiz = models.Quiz.build(req.body.quiz);
 	quiz.validate().then(function(err) {
@@ -89,19 +91,19 @@ exports.create = function(req, res) {
 				errors: err.errors
 			});
 		} else {
+			//Guarda en la base de datos lod campos pregunta y respuesta de quiz
 			quiz.save({
-				fields: ["pregunta", "respuesta"]
-			}).then(function() { //save: Guarda en DB campos pregunta y respuesta de quiz
-				res.redirect('/quizes') //res.redirect: Redirección HTTP a lista de preguntas
+				fields: ["pregunta", "respuesta", "tema"]
+			}).then(function() { //Almacena las propiedades pregunta y respuesta del objeto no persistente quiz en la base de datos
+				res.redirect('/quizes'); //redirección HTTP (URL relativo) lista de preguntas
 			})
 		}
-
 	});
 };
 
-//GET /quizes/:id/edit
+//Get/quizes/:id/edit
 exports.edit = function(req, res) {
-	var quiz = req.quiz; //autoload de instancia de quiz
+	var quiz = req.quiz; //Autoload de instancia de quiz
 	res.render('quizes/edit', {
 		quiz: quiz,
 		errors: []
@@ -112,6 +114,7 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
 	req.quiz.pregunta = req.body.quiz.pregunta;
 	req.quiz.respuesta = req.body.quiz.respuesta;
+	req.quiz.tema = req.body.quiz.tema;
 	req.quiz.validate().then(function(err) {
 		if (err) {
 			res.render('quizes/edit', {
@@ -120,14 +123,15 @@ exports.update = function(req, res) {
 			});
 		} else {
 			req.quiz.save({
-				fields: ["pregunta", "respuesta"]
-			}).then(function() {
-				res.redirect('/quizes');
-			});
+					fields: ["pregunta", "respuesta", "tema"]
+				})
+				.then(function() {
+					res.redirect('/quizes');
+				});
 		}
 	});
 };
-//DELETE /quizes/:id
+//DELETE/quizes/:id
 exports.destroy = function(req, res) {
 	req.quiz.destroy().then(function() {
 		res.redirect('/quizes');

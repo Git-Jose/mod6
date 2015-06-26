@@ -1,4 +1,8 @@
 @charset "utf-8";
+
+body{
+	font-size: smaller;
+}
 #d2{
 	flex: 1 6 85%;
 	order: 2;
@@ -26,4 +30,16 @@ img{
 }
 .creditos{
 	text-align: left;
+}
+.tabla{
+	width: 100%;
+	text-align: center;
+	margin-left: 0;
+}
+fieldset{
+	width: 100%;
+	margin-left: 0;
+}
+caption{
+	font-size: large;
 }
