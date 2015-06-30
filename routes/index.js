@@ -17,20 +17,21 @@ router.get('/', function(req, res) {
 router.param('quizId', quizController.load);
 
 //Definición de rutas de sesión
-router.get('/login', sessionController.new);  //formulario de login
-router.post('/login', sessionController.create);  //Crear sesión
+router.get('/login', sessionController.new); //formulario de login
+router.post('/login', sessionController.create); //Crear sesión
 router.get('/logout', sessionController.destroy); //Destruir sesión
 
 //Definición de rutas de /quizes
 router.get('/quizes', quizController.index);
 router.get('/quizes/:quizId(\\d+)', quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
-router.get('/quizes/new', quizController.new);
-router.post('/quizes/create', quizController.create);
-router.get('/quizes/:quizId(\\d+)/edit', quizController.edit);
-router.put('/quizes/:quizId(\\d+)', quizController.update);
-router.delete('/quizes/:quizId(\\d+)', quizController.destroy);
+router.get('/quizes/new', sessionController.loginRequired, quizController.new);
+router.post('/quizes/create', sessionController.loginRequired, quizController.create);
+router.get('/quizes/:quizId(\\d+)/edit', sessionController.loginRequired, quizController.edit);
+router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.update);
+router.delete('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.destroy);
 
+//Definición de rutas de los comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
 
