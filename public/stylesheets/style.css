@@ -145,5 +145,15 @@ caption{
 	font-weight: bold;
 }
 .error{
-	color: #ff4e00;
+	color: red;
+}
+.right{
+	float: right;
+	color: goldenrod;
+}
+.right a{
+	color: black;
+}
+.right a:hover{
+	color: goldenrod;
 }

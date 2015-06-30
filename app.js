@@ -28,7 +28,11 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 app.use(cookieParser('cotolengo')); //Semilla para cifrar cookie
-app.use(session());
+app.use(session({
+	secret: 'cotolengo',
+	resave: true,
+	saveUninitialized: true
+}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 

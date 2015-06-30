@@ -10,11 +10,13 @@
 <body>
 	<div id="page-wrap">
 		<header class="main" id="h1">
-		<% if(!session.user){ %>
-		<p class="right"> <a href="/login">Login</a> </p>
-		<% } else {%>
-		<p class="right"> <%= session.user.username %> <a href="/logout">Logout</a> </p>
+		
+		<% if(!session.user){%>
+		<p class="right"><a href="/login">Login</a></p>
+		<% }  else {%>
+		<p class="right"><%=session.user.username %> <a href="/logout">Logout</a></p>
 		<% } %>
+		
 		<h1>Quiz<span>: el gran juego de las preguntas.</span></h1>
 		</header>
 		<div id="d2">
