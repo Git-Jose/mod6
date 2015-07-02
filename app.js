@@ -36,6 +36,22 @@ app.use(session({
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Auto-logout
+app.use(function (req, res, next) {
+	if (!req.session.user) {
+		req.session.activo = null;
+	} else if (req.session.user) {
+		if (!req.session.activo) {
+			req.session.activo = new Date().getTime();
+		} else if (new Date().getTime() - req.session.activo > 120000) {
+			delete req.session.user;
+		} else {
+			req.session.activo = new Date().getTime();
+		}
+	}
+next();	
+});
+
 //helpers dinámicos
 app.use(function(req, res, next) {
 	//Guardar path en session.redir para después de login
