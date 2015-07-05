@@ -4,6 +4,7 @@ var router = express.Router();
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
+var statisticsController = require('../controllers/statistics_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -13,14 +14,14 @@ router.get('/', function(req, res) {
 	});
 });
 
-//Autoload de comandos con :quizId
-router.param('quizId', quizController.load); //Autoload :quizId
-router.param('commentId', commentController.load); //Autoload :commentId
+//Autoload de comandos con quizId
+router.param('quizId', quizController.load);
+router.param('commentId', commentController.load); // Autoload :commentId
 
 //Definición de rutas de sesión
-router.get('/login', sessionController.new); //formulario de login
-router.post('/login', sessionController.create); //Crear sesión
-router.get('/logout', sessionController.destroy); //Destruir sesión
+router.get('/login', sessionController.new); // formulario de login
+router.post('/login', sessionController.create); // Crear sesión
+router.get('/logout', sessionController.destroy); // Destruir sesión
 
 //Definición de rutas de /quizes
 router.get('/quizes', quizController.index);
@@ -32,10 +33,14 @@ router.get('/quizes/:quizId(\\d+)/edit', sessionController.loginRequired, quizCo
 router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.update);
 router.delete('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.destroy);
 
-//Definición de rutas de los comentarios
+//Definición de rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
 router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', sessionController.loginRequired, commentController.publish);
+
+//Definición de ruta de estadísticas
+router.get('/quizes/statistics', statisticsController.buscar, statisticsController.show);
+
 
 //router.get('/quizes/question', quizController.question);
 //router.get('/quizes/answer', quizController.answer);

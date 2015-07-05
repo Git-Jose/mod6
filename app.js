@@ -38,15 +38,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Auto-logout
 app.use(function (req, res, next) {
-	if (!req.session.user) {
-		req.session.activo = null;
-	} else if (req.session.user) {
-		if (!req.session.activo) {
-			req.session.activo = new Date().getTime();
-		} else if (new Date().getTime() - req.session.activo > 120000) {
-			delete req.session.user;
+	if (!req.session.user) {       //Comprobar que no estamos logeados
+		req.session.activo = null;  //Variable de control a nulo
+	} else if (req.session.user) { //Si estamos logueados
+		if (!req.session.activo) { // Y además la variable de control es nula
+			req.session.activo = new Date().getTime(); // Se inicia la variable de control
+		} else if (new Date().getTime() - req.session.activo > 120000) { //Si han pasado 2 minutos se cierra sesión
+			delete req.session.user;											
 		} else {
-			req.session.activo = new Date().getTime();
+			req.session.activo = new Date().getTime(); //Si ha habido actividad se reinicia la variable de control
 		}
 	}
 next();	

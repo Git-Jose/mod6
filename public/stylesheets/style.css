@@ -124,6 +124,9 @@ ul{
 li{
 	display: inline;
 }
+.estadisticas{
+	display: block;
+}
 section a:hover{
 	/*background-color: whitesmoke;*/
 	color: #ffffff;
