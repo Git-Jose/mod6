@@ -18,7 +18,7 @@ exports.buscar = function(req, res, next) {
 			models.Comment.aggregate('publicado', 'count', {  //Contar los publicados
 				distinct: false,
 				where: {
-					publicado: 1
+					publicado: true
 				}
 			}).then(function(count) {
 				statistics.siPubli = count;
