@@ -12,7 +12,7 @@ var statistics = {
 exports.buscar = function(req, res, next) {
 	models.Quiz.count().then(function(cuenta) {
 		statistics.preguntas = cuenta;
-		models.Comment.count().then(function(count) {
+		models.Comment.count().then(function(count) {  //Cuenta los comentarios
 				statistics.comentarios = count || 0;
 			}),
 			models.Comment.aggregate('publicado', 'count', {  //Contar los publicados
